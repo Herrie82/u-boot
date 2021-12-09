@@ -31,7 +31,6 @@
 #define CONFIG_REMAKE_ELF
 
 /* Flat Device Tree Definitions */
-#define CONFIG_OF_BOARD_SETUP
 
 #define CONFIG_SYS_BOOTMAPSZ		(256 << 20)
 #define CONFIG_SYS_FSL_ESDHC_ADDR	0

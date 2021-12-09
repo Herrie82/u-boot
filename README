@@ -565,11 +565,6 @@ The following options need to be configured:
 		boards with QUICC Engines require OF_QE to set UCC MAC
 		addresses
 
-		CONFIG_OF_BOARD_SETUP
-
-		Board code has addition modification that it wants to make
-		to the flat device tree before handing it off to the kernel
-
 		CONFIG_OF_SYSTEM_SETUP
 
 		Other code has addition modification that it wants to make

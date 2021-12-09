@@ -26,8 +26,6 @@
 #define CONFIG_SYS_PBSIZE             (CONFIG_SYS_CBSIZE + \
 				      sizeof(CONFIG_SYS_PROMPT) + 16)
 
-#define CONFIG_OF_SYSTEM_SETUP
-
 #undef CONFIG_EXTRA_ENV_SETTINGS
 #define CONFIG_EXTRA_ENV_SETTINGS	\
 	"loadimage=ext4load pvblock 0 0x90000000 /boot/Image;\0" \

@@ -169,9 +169,6 @@
 #define CONFIG_SYS_MONITOR_BASE CONFIG_SYS_TEXT_BASE
 #endif
 
-#define CONFIG_OF_BOARD_SETUP
-#define CONFIG_OF_STDOUT_VIA_ALIAS
-
 #include <asm/fsl_secure_boot.h>
 
 #endif
