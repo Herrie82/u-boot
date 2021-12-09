@@ -14,7 +14,6 @@
 #define CONFIG_TIZEN			/* TIZEN lib */
 
 /* Keep L2 Cache Disabled */
-#define CONFIG_SYS_L2CACHE_OFF		1
 
 /* Universal has 2 banks of DRAM */
 #define CONFIG_SYS_SDRAM_BASE		0x40000000

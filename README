@@ -592,9 +592,6 @@ The following options need to be configured:
 		the defaults discussed just above.
 
 - Cache Configuration:
-		CONFIG_SYS_L2CACHE_OFF- Do not enable L2 cache in U-Boot
-
-- Cache Configuration for ARM:
 		CONFIG_SYS_L2_PL310 - Enable support for ARM PL310 L2 cache
 				      controller
 		CONFIG_SYS_PL310_BASE - Physical base address of PL310
