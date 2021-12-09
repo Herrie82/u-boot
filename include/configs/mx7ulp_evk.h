@@ -15,7 +15,6 @@
 #define CONFIG_SYS_BOOTM_LEN		0x1000000
 
 #define CONFIG_MMCROOT                  "/dev/mmcblk0p2"  /* USDHC1 */
-#define CONFIG_SYS_MMC_IMG_LOAD_PART    1
 
 /* Using ULP WDOG for reset */
 #define WDOG_BASE_ADDR			WDG1_RBASE

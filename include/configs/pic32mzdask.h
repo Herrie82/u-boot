@@ -34,7 +34,6 @@
 #define CONFIG_SYS_MONITOR_LEN		(192 << 10)
 
 #define CONFIG_SYS_ENV_ADDR		0x88300000
-#define CONFIG_SYS_FDT_ADDR		0x89d00000
 
 /* Memory Test */
 

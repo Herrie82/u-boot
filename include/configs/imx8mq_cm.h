@@ -89,6 +89,4 @@
 #define CONFIG_SYS_FSL_USDHC_NUM		2
 #define CONFIG_SYS_FSL_ESDHC_ADDR       0
 
-#define CONFIG_SYS_MMC_IMG_LOAD_PART	1
-
 #endif

@@ -116,10 +116,6 @@
 #define PHYS_SDRAM                      0x40000000
 #define PHYS_SDRAM_SIZE			0x40000000 /* 1GB DDR */
 
-#define CONFIG_SYS_MEMTEST_START	PHYS_SDRAM
-#define CONFIG_SYS_MEMTEST_END		(CONFIG_SYS_MEMTEST_START + \
-					(PHYS_SDRAM_SIZE >> 1))
-
 #define CONFIG_MXC_UART_BASE		UART1_BASE_ADDR
 
 /* Monitor Command Prompt */
@@ -131,7 +127,5 @@
 
 #define CONFIG_SYS_FSL_USDHC_NUM	2
 #define CONFIG_SYS_FSL_ESDHC_ADDR       0
-
-#define CONFIG_SYS_MMC_IMG_LOAD_PART	1
 
 #endif

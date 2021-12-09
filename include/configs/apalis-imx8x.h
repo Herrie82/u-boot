@@ -99,8 +99,6 @@
 
 /* Environment in eMMC, before config block at the end of 1st "boot sector" */
 
-#define CONFIG_SYS_MMC_IMG_LOAD_PART	1
-
 /* On Apalis iMX8X USDHC1 is eMMC, USDHC2 is 4-bit SD */
 #define CONFIG_SYS_FSL_USDHC_NUM	2
 

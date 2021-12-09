@@ -109,8 +109,6 @@
 
 #define CONFIG_SYS_INIT_SP_ADDR		0x80200000
 
-#define CONFIG_SYS_MMC_IMG_LOAD_PART	1
-
 /* On LPDDR4 board, USDHC1 is for eMMC, USDHC2 is for SD on CPU board,
  * USDHC3 is for SD on base board On DDR4 board, USDHC1 is mux for NAND,
  * USDHC2 is for SD, USDHC3 is for SD on base board

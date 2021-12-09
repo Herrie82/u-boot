@@ -33,8 +33,6 @@
 
 #endif
 
-#define CONFIG_SYS_MMC_IMG_LOAD_PART	1
-
 #define CONFIG_EXTRA_ENV_SETTINGS \
 	"script=boot.scr\0" \
 	"image=zImage\0" \

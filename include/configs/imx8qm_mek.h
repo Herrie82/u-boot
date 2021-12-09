@@ -122,8 +122,6 @@
 
 /* Default environment is in SD */
 
-#define CONFIG_SYS_MMC_IMG_LOAD_PART	1
-
 /* On LPDDR4 board, USDHC1 is for eMMC, USDHC2 is for SD on CPU board */
 #define CONFIG_MMCROOT			"/dev/mmcblk1p2"  /* USDHC2 */
 #define CONFIG_SYS_FSL_USDHC_NUM	2
