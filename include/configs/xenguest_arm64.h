@@ -11,10 +11,7 @@
 
 #define CONFIG_EXTRA_ENV_SETTINGS
 
-#undef CONFIG_NR_DRAM_BANKS
 #undef CONFIG_SYS_SDRAM_BASE
-
-#define CONFIG_NR_DRAM_BANKS          1
 
 /*
  * This can be any arbitrary address as we are using PIE, but
