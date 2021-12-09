@@ -102,8 +102,6 @@
 
 #define CONFIG_SYS_MMC_IMG_LOAD_PART	1
 
-#define CONFIG_MXC_GPIO
-
 #define CONFIG_OF_SYSTEM_SETUP
 
 #endif
