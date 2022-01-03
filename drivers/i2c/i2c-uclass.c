@@ -638,12 +638,11 @@ int i2c_chip_of_to_plat(struct udevice *dev, struct dm_i2c_chip *chip)
 {
 	int addr;
 
-	chip->offset_len = dev_read_u32_default(dev, "u-boot,i2c-offset-len",
-						1);
+	chip->offset_len = dev_read_u32_default(dev, "u-boot,i2c-offset-len", 1);
 	chip->flags = 0;
 	addr = dev_read_u32_default(dev, "reg", -1);
 	if (addr == -1) {
-		debug("%s: I2C Node '%s' has no 'reg' property %s\n", __func__,
+		debug("%s: I2C node '%s' has no 'reg' property %s\n", __func__,
 		      dev_read_name(dev), dev->name);
 		return log_ret(-EINVAL);
 	}
@@ -651,11 +650,9 @@ int i2c_chip_of_to_plat(struct udevice *dev, struct dm_i2c_chip *chip)
 
 	return 0;
 }
-#endif
 
 static int i2c_pre_probe(struct udevice *dev)
 {
-#if CONFIG_IS_ENABLED(OF_CONTROL) && !CONFIG_IS_ENABLED(OF_PLATDATA)
 	struct dm_i2c_bus *i2c = dev_get_uclass_priv(dev);
 	unsigned int max = 0;
 	ofnode node;
@@ -663,45 +660,36 @@ static int i2c_pre_probe(struct udevice *dev)
 
 	i2c->max_transaction_bytes = 0;
 	dev_for_each_subnode(node, dev) {
-		ret = ofnode_read_u32(node,
-				      "u-boot,i2c-transaction-bytes",
-				      &max);
+		ret = ofnode_read_u32(node, "u-boot,i2c-transaction-bytes", &max);
 		if (!ret && max > i2c->max_transaction_bytes)
 			i2c->max_transaction_bytes = max;
 	}
 
 	debug("%s: I2C bus: %s max transaction bytes: %d\n", __func__,
 	      dev->name, i2c->max_transaction_bytes);
-#endif
+
 	return 0;
 }
 
 static int i2c_post_probe(struct udevice *dev)
 {
-#if CONFIG_IS_ENABLED(OF_CONTROL) && !CONFIG_IS_ENABLED(OF_PLATDATA)
 	struct dm_i2c_bus *i2c = dev_get_uclass_priv(dev);
 
 	i2c->speed_hz = dev_read_u32_default(dev, "clock-frequency",
 					     I2C_SPEED_STANDARD_RATE);
 
 	return dm_i2c_set_bus_speed(dev, i2c->speed_hz);
-#else
-	return 0;
-#endif
 }
 
 static int i2c_child_post_bind(struct udevice *dev)
 {
-#if CONFIG_IS_ENABLED(OF_CONTROL) && !CONFIG_IS_ENABLED(OF_PLATDATA)
 	struct dm_i2c_chip *plat = dev_get_parent_plat(dev);
 
 	if (!dev_has_ofnode(dev))
 		return 0;
 	return i2c_chip_of_to_plat(dev, plat);
-#else
-	return 0;
-#endif
 }
+#endif /* OF_CONTROL && !OF_PLATDATA */
 
 static int i2c_post_bind(struct udevice *dev)
 {
@@ -720,11 +708,13 @@ UCLASS_DRIVER(i2c) = {
 	.name		= "i2c",
 	.flags		= DM_UC_FLAG_SEQ_ALIAS,
 	.post_bind	= i2c_post_bind,
-	.pre_probe      = i2c_pre_probe,
-	.post_probe	= i2c_post_probe,
 	.per_device_auto	= sizeof(struct dm_i2c_bus),
 	.per_child_plat_auto	= sizeof(struct dm_i2c_chip),
+#if CONFIG_IS_ENABLED(OF_CONTROL) && !CONFIG_IS_ENABLED(OF_PLATDATA)
+	.pre_probe      = i2c_pre_probe,
+	.post_probe	= i2c_post_probe,
 	.child_post_bind = i2c_child_post_bind,
+#endif
 };
 
 UCLASS_DRIVER(i2c_generic) = {

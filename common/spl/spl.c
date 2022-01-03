@@ -703,8 +703,6 @@ void board_init_r(gd_t *dummy1, ulong dummy2)
 		}
 	}
 	if (CONFIG_IS_ENABLED(HANDOFF)) {
-		int ret;
-
 		ret = setup_spl_handoff();
 		if (ret) {
 			puts(SPL_TPL_PROMPT "Cannot set up SPL handoff\n");

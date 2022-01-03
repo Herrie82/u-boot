@@ -427,7 +427,7 @@ int uclass_find_device_by_phandle(enum uclass_id id, struct udevice *parent,
 
 	return -ENODEV;
 }
-#endif
+#endif /* OF_CONTROL && !OF_PLATDATA */
 
 int uclass_get_device_by_driver(enum uclass_id id,
 				const struct driver *find_drv,
@@ -559,7 +559,7 @@ int uclass_get_device_by_phandle(enum uclass_id id, struct udevice *parent,
 	ret = uclass_find_device_by_phandle(id, parent, name, &dev);
 	return uclass_get_device_tail(dev, ret, devp);
 }
-#endif
+#endif /* OF_CONTROL */
 
 int uclass_first_device(enum uclass_id id, struct udevice **devp)
 {
@@ -697,7 +697,7 @@ int uclass_unbind_device(struct udevice *dev)
 	list_del(&dev->uclass_node);
 	return 0;
 }
-#endif
+#endif /* DM_DEVICE_REMOVE */
 
 int uclass_pre_probe_device(struct udevice *dev)
 {
@@ -762,7 +762,7 @@ int uclass_pre_remove_device(struct udevice *dev)
 
 	return 0;
 }
-#endif
+#endif /* DM_DEVICE_REMOVE */
 
 int uclass_probe_all(enum uclass_id id)
 {

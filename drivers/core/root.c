@@ -56,8 +56,7 @@ void dm_fixup_for_gd_move(struct global_data *new_gd)
 
 void fix_drivers(void)
 {
-	struct driver *drv =
-		ll_entry_start(struct driver, driver);
+	struct driver *drv = ll_entry_start(struct driver, driver);
 	const int n_ents = ll_entry_count(struct driver, driver);
 	struct driver *entry;
 
@@ -89,8 +88,7 @@ void fix_drivers(void)
 
 void fix_uclass(void)
 {
-	struct uclass_driver *uclass =
-		ll_entry_start(struct uclass_driver, uclass_driver);
+	struct uclass_driver *uclass = ll_entry_start(struct uclass_driver, uclass_driver);
 	const int n_ents = ll_entry_count(struct uclass_driver, uclass_driver);
 	struct uclass_driver *entry;
 
@@ -118,8 +116,7 @@ void fix_uclass(void)
 
 void fix_devices(void)
 {
-	struct driver_info *dev =
-		ll_entry_start(struct driver_info, driver_info);
+	struct driver_info *dev = ll_entry_start(struct driver_info, driver_info);
 	const int n_ents = ll_entry_count(struct driver_info, driver_info);
 	struct driver_info *entry;
 
@@ -219,7 +216,7 @@ int dm_remove_devices_flags(uint flags)
 
 	return 0;
 }
-#endif
+#endif /* DM_DEVICE_REMOVE */
 
 int dm_scan_plat(bool pre_reloc_only)
 {
@@ -273,7 +270,7 @@ static int dm_scan_fdt_node(struct udevice *parent, ofnode parent_node,
 		const char *node_name = ofnode_get_name(node);
 
 		if (!ofnode_is_enabled(node)) {
-			pr_debug("   - ignoring disabled device\n");
+			debug("   - ignoring disabled device: %s\n", node_name);
 			continue;
 		}
 		err = lists_bind_fdt(parent, node, NULL, pre_reloc_only);
@@ -328,15 +325,14 @@ int dm_extended_scan(bool pre_reloc_only)
 	for (i = 0; i < ARRAY_SIZE(nodes); i++) {
 		ret = dm_scan_fdt_ofnode_path(nodes[i], pre_reloc_only);
 		if (ret) {
-			debug("dm_scan_fdt() scan for %s failed: %d\n",
-			      nodes[i], ret);
+			debug("dm_scan_fdt() scan for %s failed: %d\n", nodes[i], ret);
 			return ret;
 		}
 	}
 
 	return ret;
 }
-#endif
+#endif /* OF_CONTROL && !OF_PLATDATA */
 
 __weak int dm_scan_other(bool pre_reloc_only)
 {
@@ -350,7 +346,7 @@ void *dm_priv_to_rw(void *priv)
 
 	return gd_dm_priv_base() + offset;
 }
-#endif
+#endif /* OF_PLATDATA_INST && READ_ONLY */
 
 /**
  * dm_scan() - Scan tables to bind devices
@@ -416,7 +412,7 @@ static int root_acpi_get_name(const struct udevice *dev, char *out_name)
 struct acpi_ops root_acpi_ops = {
 	.get_name	= root_acpi_get_name,
 };
-#endif
+#endif /* CONFIG_ACPIGEN */
 
 /* This is the root driver - all drivers are children of this */
 U_BOOT_DRIVER(root_driver) = {

@@ -90,7 +90,7 @@ static int device_bind_common(struct udevice *parent, const struct driver *drv,
 				if (!dev_read_alias_seq(dev, &dev->seq_)) {
 					auto_seq = false;
 					log_debug("   - seq=%d\n", dev->seq_);
-					}
+				}
 			}
 		}
 	}
@@ -687,8 +687,7 @@ static int device_find_by_ofnode(ofnode node, struct udevice **devp)
 	int ret;
 
 	list_for_each_entry(uc, gd->uclass_root, sibling_node) {
-		ret = uclass_find_device_by_ofnode(uc->uc_drv->id, node,
-						   &dev);
+		ret = uclass_find_device_by_ofnode(uc->uc_drv->id, node, &dev);
 		if (!ret || dev) {
 			*devp = dev;
 			return 0;
@@ -697,7 +696,7 @@ static int device_find_by_ofnode(ofnode node, struct udevice **devp)
 
 	return -ENODEV;
 }
-#endif
+#endif /* OF_CONTROL && !OF_PLATDATA */
 
 int device_get_child(const struct udevice *parent, int index,
 		     struct udevice **devp)
@@ -830,7 +829,7 @@ int device_get_by_ofplat_idx(uint idx, struct udevice **devp)
 
 	return device_get_device_tail(dev, dev ? 0 : -ENOENT, devp);
 }
-#endif
+#endif /* OF_PLATDATA */
 
 int device_find_first_child(const struct udevice *parent, struct udevice **devp)
 {
@@ -1137,7 +1136,7 @@ int dev_enable_by_path(const char *path)
 
 	return lists_bind_fdt(parent, node, NULL, false);
 }
-#endif
+#endif /* OF_CONTROL && !OF_PLATDATA */
 
 #if CONFIG_IS_ENABLED(OF_PLATDATA_RT)
 static struct udevice_rt *dev_get_rt(const struct udevice *dev)

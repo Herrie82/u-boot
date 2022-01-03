@@ -46,8 +46,7 @@ int pmic_bind_children(struct udevice *pmic, ofnode parent,
 
 			prefix_len = strlen(info->prefix);
 			if (strncmp(info->prefix, node_name, prefix_len)) {
-				reg_name = ofnode_read_string(node,
-							      "regulator-name");
+				reg_name = ofnode_read_string(node, "regulator-name");
 				if (!reg_name)
 					continue;
 				if (strncmp(info->prefix, reg_name, prefix_len))
@@ -56,8 +55,7 @@ int pmic_bind_children(struct udevice *pmic, ofnode parent,
 
 			drv = lists_driver_lookup_name(info->driver);
 			if (!drv) {
-				debug("  - driver: '%s' not found!\n",
-				      info->driver);
+				debug("  - driver: '%s' not found!\n", info->driver);
 				continue;
 			}
 
@@ -74,8 +72,7 @@ int pmic_bind_children(struct udevice *pmic, ofnode parent,
 
 			child->driver_data = trailing_strtol(node_name);
 
-			debug("  - set 'child->driver_data': %lu\n",
-			      child->driver_data);
+			debug("  - set 'child->driver_data': %lu\n", child->driver_data);
 			break;
 		}
 
@@ -88,7 +85,7 @@ int pmic_bind_children(struct udevice *pmic, ofnode parent,
 	debug("Bound: %d children for PMIC: '%s'\n", bind_count, pmic->name);
 	return bind_count;
 }
-#endif
+#endif /* PMIC_CHILDREN */
 
 int pmic_get(const char *name, struct udevice **devp)
 {
