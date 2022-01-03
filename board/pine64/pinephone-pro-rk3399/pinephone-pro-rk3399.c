@@ -90,6 +90,7 @@ static int setup_usb_power(void)
 
 	return 0;
 }
+#endif /* CONFIG_SPL_BUILD && POWER_SUPPORT && !OF_PLATDATA */
 
 void power_setup(void)
 {
@@ -99,4 +100,4 @@ void power_setup(void)
 	if (ret)
 		debug("Failed to configure USB power settings: %d\n", ret);
 }
-#endif /* CONFIG_SPL_BUILD && POWER_SUPPORT && !OF_PLATDATA */
+
