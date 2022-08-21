@@ -93,5 +93,3 @@ void power_setup(void)
 	if (ret)
 		debug("Failed to configure USB power settings: %d\n", ret);
 }
-
-#endif
